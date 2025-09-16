@@ -7,15 +7,13 @@ public class RagdollInputController : MonoBehaviour
 
     void Update()
     {
-        float vertical = Input.GetAxis("Vertical");   // W/S
+        float h = Input.GetAxis("Horizontal"); // A/D
+        float v = Input.GetAxis("Vertical");   // W/S
 
-        if (Mathf.Abs(vertical) > 0.1f)
-        {
-            walker.walkSpeed = baseWalkSpeed;
-        }
-        else
-        {
-            walker.walkSpeed = 0f;
-        }
+        // Pasar input al walker
+        walker.SetInput(h, v);
+
+        // Controla solo la velocidad de las piernas
+        walker.walkSpeed = (Mathf.Abs(v) > 0.1f) ? baseWalkSpeed : 0f;
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 public class RagdollBalancer : MonoBehaviour
 {
     public Rigidbody hips;
-    public float uprightTorque = 1200f;   // más bajo que antes
+    public float uprightTorque = 1200f;   // ajustable
     public float forwardLean = 10f;       // inclinación hacia adelante en grados
 
     void FixedUpdate()
@@ -16,7 +16,5 @@ public class RagdollBalancer : MonoBehaviour
         if (angle > 180f) angle -= 360f;
 
         hips.AddTorque(axis * angle * uprightTorque * Time.fixedDeltaTime);
-
-
     }
 }

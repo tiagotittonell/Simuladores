@@ -3,27 +3,28 @@ using UnityEngine;
 public class RootMover : MonoBehaviour
 {
     public Rigidbody rootBody;
-    public float moveForce = 300f;
-    public float turnSpeed = 5f;
+    public float moveSpeed = 5f;
+    public float rotationSpeed = 720f; // grados por segundo
 
     void FixedUpdate()
     {
         float h = Input.GetAxis("Horizontal"); // A/D
         float v = Input.GetAxis("Vertical");   // W/S
 
-        Vector3 move = new Vector3(h, 0, v).normalized;
+        Vector3 moveInput = new Vector3(h, 0, v).normalized;
 
-        if (move.magnitude > 0.1f)
+        if (moveInput.magnitude > 0.1f)
         {
-            // Empuje recto en la dirección actual del Root
-            rootBody.AddForce(transform.forward * v * moveForce);
+            // Dirección de movimiento
+            Vector3 moveDir = transform.TransformDirection(moveInput);
 
-            // Rotación hacia izquierda/derecha
-            if (h != 0)
-            {
-                Quaternion turn = Quaternion.Euler(0, h * turnSpeed, 0);
-                rootBody.MoveRotation(rootBody.rotation * turn);
-            }
+            // Movimiento estable
+            Vector3 targetPos = rootBody.position + moveDir * moveSpeed * Time.fixedDeltaTime;
+            rootBody.MovePosition(targetPos);
+
+            // Rotación suave hacia dirección de movimiento
+            Quaternion targetRot = Quaternion.LookRotation(moveDir, Vector3.up);
+            rootBody.MoveRotation(Quaternion.RotateTowards(rootBody.rotation, targetRot, rotationSpeed * Time.fixedDeltaTime));
         }
     }
 }

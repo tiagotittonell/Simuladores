@@ -1971,7 +1971,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!65 &1630262848
 BoxCollider:
@@ -1993,7 +1993,7 @@ ConfigurableJoint:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1630262845}
-  m_ConnectedBody: {fileID: 1900478387}
+  m_ConnectedBody: {fileID: 0}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
@@ -2289,12 +2289,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1900478385}
-  - component: {fileID: 1900478387}
   - component: {fileID: 1900478389}
   - component: {fileID: 1900478388}
   - component: {fileID: 1900478390}
-  - component: {fileID: 1900478392}
-  - component: {fileID: 1900478391}
   m_Layer: 0
   m_Name: Jugador
   m_TagString: Untagged
@@ -2318,22 +2315,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 2.512, z: 0}
---- !u!54 &1900478387
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1900478384}
-  serializedVersion: 2
-  m_Mass: 35
-  m_Drag: 0.2
-  m_AngularDrag: 0.5
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 80
-  m_CollisionDetection: 0
 --- !u!114 &1900478388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2348,8 +2329,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftThigh: {fileID: 1353968966}
   rightThigh: {fileID: 528666718}
-  walkSpeed: 10
-  stepAngle: 50
+  hips: {fileID: 1630262847}
+  walkSpeed: 7
+  baseStepAngle: 35
+  moveSpeed: 3
+  rotationSpeed: 10
 --- !u!114 &1900478389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2363,7 +2347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hips: {fileID: 1630262847}
-  uprightTorque: 5000
+  uprightTorque: 15000
   forwardLean: 15
 --- !u!114 &1900478390
 MonoBehaviour:
@@ -2379,35 +2363,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walker: {fileID: 1900478388}
   baseWalkSpeed: 2
---- !u!114 &1900478391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1900478384}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aaa297f2e78c5474fb587597e2761f82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rootBody: {fileID: 1900478387}
-  moveForce: 50
-  turnSpeed: 3
---- !u!136 &1900478392
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1900478384}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.1130805
-  m_Height: 1.8280182
-  m_Direction: 1
-  m_Center: {x: 1.0689394, y: 0.46875334, z: 1.5695882}
 --- !u!1 &1915827603 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3380159844806476642, guid: bfad7eee04f72fb43935426ab9292b1e,
